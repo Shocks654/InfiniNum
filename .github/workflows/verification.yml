@@ -1,0 +1,38 @@
+# ==========================================================================
+# INFININUM INTEGRATION - DEVOPS AUTOMATION LAYER
+# PURE MATHEMATICAL INTEGRITY PIPELINE - STRICTLY ENGLISH NOTES
+# ==========================================================================
+
+name: InfiniNum Core Verification Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  mathematical-integrity-sweep:
+    name: Core Algorithm Integrity & Verification Sweep
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source Code Ledger
+        uses: actions/checkout@v4
+
+      - name: Initialize Python Core Environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13' # Strictly tracking your 64-bit local Python engine
+
+      - name: Install Runtime Core Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f 10_DevOps_Automation/requirements.txt ]; then pip install -r 10_DevOps_Automation/requirements.txt; fi
+
+      - name: Execute Transfinite Python Unit Tests
+        run: |
+          # Pure offline execution sweep of your anonymous calculation layers
+          if [ -d 08_Testing_Suite/python_tests ]; then python -m unittest discover -s 08_Testing_Suite/python_tests; fi
