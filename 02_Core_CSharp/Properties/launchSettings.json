@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "InfiniNum": {
+      "commandName": "Project",
+      "commandLineArgs": "--display-loading-banner",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Production",
+        "INFININUM_LICENSE_TYPE": "MIT"
+      }
+    }
+  }
+}
