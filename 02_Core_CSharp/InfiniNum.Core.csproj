@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- ========================================================================== -->
+  <!-- INFININUM CORE ENGINE - PROJECT CONFIGURATION LAYER                        -->
+  <!-- LICENSED UNDER THE MIT LICENSE - COPYRIGHT (C) 2026 SHOCKS654              -->
+  <!-- STRICTLY ENGLISH CONFIGURATION NOTES - NO HUNGARIAN TEXT ALLOWED           -->
+  <!-- ========================================================================== -->
+
+  <!-- Compilation settings and Target Framework configuration -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <RootNamespace>InfiniNum.Core</RootNamespace>
+    <AssemblyName>InfiniNum.Core</AssemblyName>
+    
+    <!-- Extreme optimization flags to eliminate any calculation latency -->
+    <Optimize>true</Optimize>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <!-- Dependencies and Package References (NuGet) -->
+  <ItemGroup>
+    <!-- System.Runtime.Numerics is loaded natively by the framework target -->
+  </ItemGroup>
+
+  <!-- Source Files inclusion architecture -->
+  <ItemGroup>
+    <!-- The MSBuild compiler automatically registers all .cs components under Systems -->
+  </ItemGroup>
+
+</Project>
