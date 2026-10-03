@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("InfiniNum.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1d43c0b9ea0429aceca6024d45960cc111725b8c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1edd5564bb93317280667ea9ecb3312edb9d3bd6")]
 [assembly: System.Reflection.AssemblyProductAttribute("InfiniNum.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("InfiniNum.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
