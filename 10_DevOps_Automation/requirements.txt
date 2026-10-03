@@ -1,0 +1,14 @@
+# ==========================================================================
+# INFININUM DEVOPS - PYTHON ENVIRONMENT DEPENDENCIES
+# LICENSED UNDER THE MIT LICENSE - COPYRIGHT (C) 2026 SHOCKS654
+# STRICTLY ENGLISH CORE CONFIGURATION - ULTRA-HIGH-SPEED UTILITIES
+# ==========================================================================
+
+# Core testing engine tools for .spec.js layers
+jedi==0.19.1
+
+# Git Python interface hooks for background daemon synchronization
+GitPython==3.1.43
+
+# Built-in math extension triggers used within the Python suite framework
+numpy==1.26.4
