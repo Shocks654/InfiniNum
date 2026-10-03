@@ -1,0 +1,24 @@
+{
+  "name": "infininum-visual-ts",
+  "version": "1.0.0",
+  "description": "High-speed TypeScript visualization engine for InfiniNum transfinite structures and Shocks Number metrics.",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "start": "echo \"[INFININUM]: Use a local server or bundler to run dist/index.html in the browser.\" && exit 0"
+  },
+  "keywords": [
+    "googology",
+    "fgmf",
+    "shocks-number",
+    "transfinite",
+    "math"
+  ],
+  "author": "Shocks654",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

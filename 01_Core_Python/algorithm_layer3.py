@@ -1,43 +1,32 @@
 # ==========================================================================
-# INFININUM CORE ENGINE - ALGORITHM LAYER 3
+# INFININUM CORE ENGINE - ADVANCED GOOGOLOGY ACCELERATOR (LAYER 3)
 # LICENSED UNDER THE MIT LICENSE - COPYRIGHT (C) 2026 SHOCKS654
-# STRICTLY ENGLISH COMMENTS - FAST GROWING HIERARCHY TRANSITION (FGMF)
+# STRICTLY ENGLISH COMMENTS - HIGH-ORDER EXPANSION (FGMF, TRH, TIF, TLF)
 # ==========================================================================
 
-import math
-
-class FastGrowingHierarchyEngine:
+class FgmfCoreEngine:
     """
-    Optimized math accelerator shifting Layer 3 hierarchies directly into 
-    the true Fast-Growing Hierarchy Matrix (FGMF), skipping slow physical recursion.
+    Symbolic evaluation engine for Shocks654's hyper-dense mathematical explosion.
+    Bypasses literal calculations to prevent infinite runtime execution lag.
     """
     def __init__(self):
-        self.version = "3.0.0"
+        # Base case definition from the official Gist specifications
+        self.base_n1 = "FOOT(Rayo(SSCG(TREE(FISH(BB(G64))))))"
 
-    def evaluate_knuth_arrow(self, base, arrows, num):
-        """Accelerated Knuth Up-Arrow Evaluation to prevent 9-hour latency loops"""
-        if arrows == 1:
-            return base ** num
-        if num == 0:
-            return 1
-        # Symbolic limit protection for mega-growth scaling
-        return self.evaluate_knuth_arrow(base, arrows - 1, base)
-
-    def transition_to_true_fgmf(self, alpha_ordinal, n_value):
-        """
-        Maps structural Layer 3 nodes (Knuth -> BEAF -> BAN) onto the True FGMF scale.
-        Calculates f_alpha(n) using fast functional acceleration tracking.
-        """
-        if alpha_ordinal == "omega":
-            # f_omega(n) = f_n(n) -> Immediate exponential explosion
-            return self.evaluate_knuth_arrow(n_value, 2, n_value)
+    def evaluate_fgmf(self, n):
+        """Evaluates Fast-Growing-Mathematical-Function layer."""
+        if n == 1:
+            return self.base_n1
+        if n == 2:
+            return f"FGMF_Iteration[Base:{self.base_n1} repeated FGMF(1) times]"
         
-        if alpha_ordinal == "omega+1":
-            # True FGMF jump utilizing extreme functional composition
-            return self.evaluate_knuth_arrow(n_value, n_value, n_value)
-            
-        if alpha_ordinal == "BEAF_base":
-            print("[FGMF_MATRIX]: Shifting Bowers Explicit Array Notation to fast-track ledger.")
-            return n_value * n_value # Symbolic mapping coefficient
-            
-        return n_value + 1
+        # Uninfinite substitution rule tracking (G64 * number that is n-2)
+        return f"FGMF_Explosion[Depth:FGMF(n-2) times over FOOT(Rayo(SSCG(TREE(FISH(BB(G64 * {n-2}))))))]"
+
+    def evaluate_trh(self, n):
+        """Evaluates The Recursion Horizon layer (Multiple nested FGMF layers)."""
+        return f"TRH_Horizon[FGMF nested {n} times wrapped around input]"
+
+    def evaluate_tif(self, n):
+        """Evaluates The Infinite Function layer (Repeated TRH sequences)."""
+        return f"TIF_Infinity[TRH nested {n} times wrapped around input]"

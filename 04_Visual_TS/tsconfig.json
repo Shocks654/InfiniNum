@@ -1,0 +1,40 @@
+{
+    "compilerOptions": {
+        /* Target Ecosystem & Environment */
+        "target": "ES2022",
+        "module": "CommonJS",
+        "lib": [
+            "DOM",
+            "DOM.Iterable",
+            "ES2022"
+        ],
+        /* Compilation Output Path Architecture */
+        "outDir": "./dist",
+        "rootDir": "./",
+        /* Strict Type-Checking Safeties for 0.0s Execution Stability */
+        "strict": true,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "noImplicitThis": true,
+        "alwaysStrict": true,
+        /* Additional Performance and Code Cleanliness Trackers */
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        /* Module Resolution Architectural Setup */
+        "moduleResolution": "node",
+        "ignoreDeprecations": "6.0",
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true
+    },
+    "include": [
+        "./**/*.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
+}
