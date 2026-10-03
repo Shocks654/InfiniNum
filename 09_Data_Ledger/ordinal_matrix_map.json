@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "ledgerName": "InfiniNum Transfinite Ordinal Matrix Map",
+  "license": "MIT",
+  "copyright": "Copyright (C) 2026 Shocks654",
+  "hierarchyTiers": {
+    "Tier1": {
+      "identifier": "Knuth",
+      "growthType": "ChainedPowerExponent",
+      "accelerationFactor": "0.0s"
+    },
+    "Tier2": {
+      "identifier": "BEAF",
+      "growthType": "MultiDimensionalTensorArray",
+      "accelerationFactor": "0.0s"
+    },
+    "Tier3": {
+      "identifier": "BAN",
+      "growthType": "HyperRankExtendedTensor",
+      "accelerationFactor": "0.0s"
+    },
+    "Tier4": {
+      "identifier": "FGMF",
+      "growthType": "TrueFastGrowingHierarchy",
+      "accelerationFactor": "0.0s",
+      "maximumPeakSingularity": {
+        "operator": "TLF^^^^^^^^TLF[LNGN][LNGN, LNGN]",
+        "targetEntityName": "Shocks' Number"
+      }
+    }
+  }
+}
