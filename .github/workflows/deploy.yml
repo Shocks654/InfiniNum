@@ -1,0 +1,45 @@
+# ==========================================================================
+# INFININUM CORE - AUTOMATED GITHUB PAGES DEPLOYMENT
+# LICENSED UNDER THE MIT LICENSE - COPYRIGHT (C) 2026 SHOCKS654
+# STRICTLY ENGLISH CONFIGURATION - ZERO-LATENCY PRODUCTION BUILD
+# ==========================================================================
+
+name: Deploy InfiniNum Web UI
+
+on:
+  push:
+    branches:
+      - main  # Triggers the deployment sequence whenever you push to main branch
+
+# Setting up tight security tokens to override the broken classic deployments
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup GitHub Pages Environment
+        uses: actions/configure-pages@v4
+
+      - name: Upload Web UI Artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Targeting your exact web folder containing index.html and styles.css
+          path: './06_Web_HTML5'
+
+      - name: Deploy to GitHub Pages Singularity Horizon
+        id: deployment
+        uses: actions/deploy-pages@v4
