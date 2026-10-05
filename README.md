@@ -1,4 +1,4 @@
 ## InfiniNum
 This is the highest calculating number pack.
-Coming soon...
+Came.
 ![](https://komarev.com/ghpvc/?username=Shocks654)
