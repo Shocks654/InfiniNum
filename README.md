@@ -16,6 +16,12 @@ InfiniNum is built to feel native no matter what stack you use. Inside the ZIP, 
 1. Go to the website, or "releases" and download the **InfiniNum.zip**. Do **NOT** download tar.gz!
 2. Unzip it directly into your project folder.
 3. Import the source file and you are ready to go. No `pip install`, no `npm install`, no setup clutter!
+---
+
+## 🛠️ Detailed Installation & Setup
+Need step-by-step instructions for Python, TypeScript, or C#? 
+👉 **Check out the [SETUP.md](./SETUP.md) file for the full guide!**
+
 
 ---
 *Created with love. If this code saved your project or homework, leave a ⭐ Star on GitHub to let me know! It makes my day!*
