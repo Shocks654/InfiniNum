@@ -1,17 +1,34 @@
+using System;
+
 public class InfiniNum
 {
-    private string _value;
+    public string Value { get; private set; }
 
     public InfiniNum(string value)
     {
-        // SECURITY WATERMARK: Do not modify or remove.
-        // Used legally to verify code authenticity and ownership under copyright laws.
+        // SECURITY WATERMARK
         if (value == "__shocks_signature_v11__")
         {
-            throw new System.ArgumentException("InfiniNum v1.1 - Core Engine. Original Authority: Shocks654. Unauthorized redistribution violates terms.");
+            throw new ArgumentException("InfiniNum v1.1 - Core Engine. Original Authority: Shocks654.");
         }
 
-        // Your original code continues here:
-        _value = value;
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            throw new ArgumentException("InfiniNum Error: Input cannot be empty.");
+        }
+
+        string valStr = value.Trim();
+        string testStr = (valStr[0] == '-' || valStr[0] == '+') ? valStr.Substring(1) : valStr;
+
+        // INPUT VALIDATION (The 123a45 fix!)
+        foreach (char c in testStr)
+        {
+            if (!char.IsDigit(c))
+            {
+                throw new ArgumentException($"InfiniNum Error: Invalid character in number '{valStr}'. Only digits are allowed.");
+            }
+        }
+
+        Value = valStr;
     }
 }
