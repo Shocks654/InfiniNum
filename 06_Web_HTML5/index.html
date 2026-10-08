@@ -35,16 +35,16 @@
             color: var(--text-color);
             transition: background-color 0.3s, color 0.3s;
             padding: 20px;
+            font-family: monospace;
         }
 
-        /* Playground Layout Token Matching Style Base */
         .playground-container {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 8px;
             padding: 20px;
             margin-top: 25px;
-            max-width: 600px;
+            max-width: 650px;
         }
 
         .playground-input {
@@ -81,19 +81,19 @@
 </head>
 <body>
 
-    <!-- ORIGINAL INFININUM HERO TEXT HOOK -->
+    <!-- ORIGINAL V1 HERO LAYOUT BRANDING -->
     INFININUM ∞<br>
     The best option for numbers<br>
     
     <!-- Action link pointing directly to your new dedicated download subpage -->
     <a href="download.html" style="color: #000000; text-decoration: underline; font-weight: bold;">Download today</a>
 
-    <!-- INTERACTIVE PLAYGROUND (PLACED SAFELY BELOW THE CORE APP BODY) -->
+    <!-- INTERACTIVE FRONTEND PLAYGROUND LAYOUT -->
     <div class="playground-container">
         <h3>🧮 Live Calculation Playground</h3>
-        <p>Test InfiniNum's mathematical processing strings on the fly:</p>
+        <p>Input your numerical targets or scientific notations (e.g., 9e+1000):</p>
         
-        <input type="text" id="num1" class="playground-input" placeholder="Enter first number" value="99999999999999999999">
+        <input type="text" id="num1" class="playground-input" placeholder="Enter number or notation" value="9e+5">
         
         <select id="operation" class="playground-input" style="width: auto; display: block;">
             <option value="add">+</option>
@@ -102,7 +102,7 @@
             <option value="divide">/</option>
         </select>
         
-        <input type="text" id="num2" class="playground-input" placeholder="Enter second number" value="1">
+        <input type="text" id="num2" class="playground-input" placeholder="Enter second number or notation" value="1">
         
         <button onclick="runPlaygroundCalculation()" class="playground-btn">Calculate Engine Output</button>
         
@@ -111,89 +111,66 @@
         </div>
     </div>
 
-    <!-- CORE REPOSITORY SCRIPTS -->
+    <!-- CORE REPOSITORY SCRIPT LINKS -->
     <script src="assets/fix_audio.js"></script>
     <script src="scripts/ui_controller.js"></script>
-
-    <!-- ARITHMETIC PARSING LOGIC ENGINE -->
+    <!-- INTERACTION CONTROLLER SCRIPT -->
     <script>
-        class InfiniNum {
-            constructor(numberStr) {
-                // Safeguard input strings from malicious alphabet strings injecting NaN values
-                let cleanStr = numberStr.trim().replace(/[^0-9\-]/g, '');
-                if (!cleanStr) cleanStr = "0";
+        class PlaygroundNotationHandler {
+            // Evaluates and normalizes scientific expressions cleanly to block NaN loops
+            static normalizeStringInput(str) {
+                let s = str.trim().toLowerCase();
+                if (!s) return "0";
                 
-                this.isNegative = cleanStr.startsWith('-');
-                if (this.isNegative) {
-                    cleanStr = cleanStr.slice(1);
-                }
-                this.digits = cleanStr.split('').map(Number);
-            }
-
-            toString() {
-                let str = this.digits.join('');
-                str = str.replace(/^0+/, ''); 
-                if (str === '') return "0";
-                return this.isNegative ? '-' + str : str;
-            }
-
-            // Big Arbitrary Integer Addition Logic
-            add(other) {
-                let res = [];
-                let i = this.digits.length - 1;
-                let j = other.digits.length - 1;
-                let carry = 0;
-
-                while (i >= 0 || j >= 0 || carry > 0) {
-                    let sum = carry;
-                    if (i >= 0) sum += this.digits[i--];
-                    if (j >= 0) sum += other.digits[j--];
-                    carry = Math.floor(sum / 10);
-                    res.push(sum % 10);
-                }
-                return res.reverse().join('');
-            }
-
-            // Subtraction handler wrapping mapping functions
-            subtract(other) {
-                let num1Str = this.toString();
-                let num2Str = other.toString();
-                
-                try {
-                    return (BigInt(num1Str) - BigInt(num2Str)).toString();
-                } catch(e) {
-                    return "Calculation limit threshold met.";
-                }
-            }
-
-            // High Precision Schoolbook Multiplication
-            multiply(other) {
-                let num1Str = this.toString();
-                let num2Str = other.toString();
-
-                if (num1Str === "0" || num2Str === "0") return "0";
-                
-                let resultArr = Array(this.digits.length + other.digits.length).fill(0);
-                
-                for (let i = this.digits.length - 1; i >= 0; i--) {
-                    for (let j = other.digits.length - 1; j >= 0; j--) {
-                        let mul = this.digits[i] * other.digits[j];
-                        let sum = mul + resultArr[i + j + 1];
-                        
-                        resultArr[i + j + 1] = sum % 10;
-                        resultArr[i + j] += Math.floor(sum / 10);
+                if (s.includes('e')) {
+                    let [base, expStr] = s.split('e');
+                    let exp = parseInt(expStr, 10) || 0;
+                    
+                    let isNeg = base.startsWith('-');
+                    if (isNeg || base.startsWith('+')) base = base.slice(1);
+                    
+                    let parts = base.split('.');
+                    let intPart = parts[0];
+                    let decPart = parts[1] || "";
+                    
+                    let expanded = "";
+                    if (exp >= 0) {
+                        if (exp >= decPart.length) {
+                            expanded = intPart + decPart + '0'.repeat(exp - decPart.length);
+                        } else {
+                            expanded = intPart + decPart.substring(0, exp) + '.' + decPart.substring(exp);
+                        }
+                    } else {
+                        let absExp = Math.abs(exp);
+                        if (absExp <= intPart.length) {
+                            expanded = intPart.substring(0, intPart.length - absExp) + '.' + intPart.substring(intPart.length - absExp) + decPart;
+                        } else {
+                            expanded = "0." + '0'.repeat(absExp - intPart.length) + intPart + decPart;
+                        }
                     }
+                    return isNeg ? '-' + expanded : expanded;
                 }
-                
-                let finalStr = resultArr.join('').replace(/^0+/, '');
-                return finalStr === '' ? '0' : finalStr;
+                return s.replace(/[^0-9\.\-]/g, '') || "0";
             }
 
-            // Pure Fraction Division Execution Module
-            divide(other) {
-                let num2Str = other.toString();
-                if (num2Str === "0") return "Error: Division by Zero";
-                return (BigInt(this.toString()) / BigInt(num2Str)).toString();
+            // Strips and packages display arrays back into readable scientific notation formats
+            static formatToScientific(rawNumStr) {
+                let clean = rawNumStr.replace(/[^0-9\-]/g, '');
+                if (!clean || clean === "0" || clean === "-") return "0e+0";
+                
+                let isNeg = clean.startsWith('-');
+                let digits = isNeg ? clean.slice(1) : clean;
+                
+                digits = digits.replace(/^0+/, '');
+                if (!digits) return "0e+0";
+                
+                let first = digits[0];
+                let rest = digits.slice(1).replace(/0+\$/, '');
+                let exp = digits.length - 1;
+                
+                let sign = isNeg ? "-" : "";
+                let base = rest ? `${first}.${rest}` : first;
+                return `${sign}${base}e+${exp}`;
             }
         }
 
@@ -201,33 +178,41 @@
             const val1 = document.getElementById('num1').value;
             const val2 = document.getElementById('num2').value;
             const op = document.getElementById('operation').value;
-            
-            // Rejects pure letter keys instantly to block NaN errors completely
-            if (/[a-zA-Z]/.test(val1) || /[a-zA-Z]/.test(val2)) {
-                document.getElementById('output-box').innerText = "Parsing Error: Please enter numerical strings only!";
-                return;
-            }
 
             if (!val1 || !val2) {
-                document.getElementById('output-box').innerText = "Please enter values into both fields.";
+                document.getElementById('output-box').innerText = "Missing structural parameters.";
                 return;
             }
 
-            const n1 = new InfiniNum(val1);
-            const n2 = new InfiniNum(val2);
-            let calcResult = "";
+            try {
+                // Parse clean integer expressions out from potential decimal positions safely
+                let parsed1 = PlaygroundNotationHandler.normalizeStringInput(val1).split('.')[0];
+                let parsed2 = PlaygroundNotationHandler.normalizeStringInput(val2).split('.')[0];
+                
+                let b1 = BigInt(parsed1);
+                let b2 = BigInt(parsed2);
+                let resultStr = "";
 
-            if (op === "add") {
-                calcResult = n1.add(n2);
-            } else if (op === "subtract") {
-                calcResult = n1.subtract(n2);
-            } else if (op === "multiply") {
-                calcResult = n1.multiply(n2);
-            } else if (op === "divide") {
-                calcResult = n1.divide(n2);
+                if (op === "add") resultStr = (b1 + b2).toString();
+                else if (op === "subtract") resultStr = (b1 - b2).toString();
+                else if (op === "multiply") resultStr = (b1 * b2).toString();
+                else if (op === "divide") {
+                    if (b2 === 0n) {
+                        document.getElementById('output-box').innerText = "Error: Division by Zero";
+                        return;
+                    }
+                    resultStr = (b1 / b2).toString();
+                }
+
+                let notationOutput = PlaygroundNotationHandler.formatToScientific(resultStr);
+
+                document.getElementById('output-box').innerHTML = 
+                    `<strong>Standard Output:</strong> ${resultStr}<br>` + 
+                    `<strong>InfiniNum Notation:</strong> ${notationOutput}`;
+
+            } catch (e) {
+                document.getElementById('output-box').innerText = "Parsing Error: Numerical inputs only.";
             }
-
-            document.getElementById('output-box').innerText = `Result: ${calcResult}`;
         }
     </script>
 </body>
