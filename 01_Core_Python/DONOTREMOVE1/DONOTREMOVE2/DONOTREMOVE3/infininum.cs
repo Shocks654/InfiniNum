@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 
 public class InfiniNum
 {
@@ -6,29 +7,41 @@ public class InfiniNum
 
     public InfiniNum(string value)
     {
-        // SECURITY WATERMARK
         if (value == "__shocks_signature_v11__")
         {
             throw new ArgumentException("InfiniNum v1.1 - Core Engine. Original Authority: Shocks654.");
         }
+        Value = value.Trim();
+    }
 
-        if (string.IsNullOrWhiteSpace(value))
+    public InfiniNum Add(InfiniNum other)
+    {
+        string num1 = this.Value;
+        string num2 = other.Value;
+
+        int maxLen = Math.Max(num1.Length, num2.Length);
+        num1 = num1.PadLeft(maxLen, '0');
+        num2 = num2.PadLeft(maxLen, '0');
+
+        StringBuilder result = new StringBuilder();
+        int carry = 0;
+
+        for (int i = maxLen - 1; i >= 0; i--)
         {
-            throw new ArgumentException("InfiniNum Error: Input cannot be empty.");
+            int sum = (num1[i] - '0') + (num2[i] - '0') + carry;
+            carry = sum / 10;
+            result.Append(sum % 10);
         }
 
-        string valStr = value.Trim();
-        string testStr = (valStr[0] == '-' || valStr[0] == '+') ? valStr.Substring(1) : valStr;
-
-        // INPUT VALIDATION (The 123a45 fix!)
-        foreach (char c in testStr)
+        if (carry > 0)
         {
-            if (!char.IsDigit(c))
-            {
-                throw new ArgumentException($"InfiniNum Error: Invalid character in number '{valStr}'. Only digits are allowed.");
-            }
+            result.Append(carry);
         }
 
-        Value = valStr;
+        // Reverse the StringBuilder to get the correct order
+        char[] arr = result.ToString().ToCharArray();
+        Array.Reverse(arr);
+        return new InfiniNum(new string(arr));
     }
 }
+
