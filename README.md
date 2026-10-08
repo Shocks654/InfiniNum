@@ -1,4 +1,4 @@
-# 🚀 InfiniNum (v1.1)
+# 🚀 InfiniNum (v1.1.1)
 
 ### "Looking for Infinium? No magic ore or fantasy metal here. Just pure, raw mathematical power for infinite numbers!" 🧮💥
 
