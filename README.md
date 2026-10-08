@@ -22,6 +22,11 @@ InfiniNum is built to feel native no matter what stack you use. Inside the ZIP, 
 Need step-by-step instructions for Python, TypeScript, or C#? 
 👉 **Check out the [SETUP.md](./SETUP.md) file for the full guide!**
 
+---
+
+## 🗳️ Community Polls
+Community Poll for v1.2 is available until 2027. 01. 01.
+👉 **Check out the [poll](https://github.com/Shocks654/InfiniNum/discussions/3) to vote for the best feature!**
 
 ---
 *Created with love. If this code saved your project or homework, leave a ⭐ Star on GitHub to let me know! It makes my day!*
