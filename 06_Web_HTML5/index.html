@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InfiniNum - Infinite Precision Math</title>
+    <!-- ========================================================================== -->
+    <!-- INFININUM WEB UI - MULTI-PAGE TEXTUAL MODE                                 -->
+    <!-- LICENSED UNDER THE MIT LICENSE - COPYRIGHT (C) 2026 SHOCKS654              -->
+    <!-- STRICTLY ENGLISH COMMENTS - NO PAINT WATERMARKS OR LAG OVERHEAD ALLOWED    -->
+    <!-- ========================================================================== -->
+    <link rel="stylesheet" href="assets/styles.css">
     
-    <!-- 1. ADD DARK MODE HANDLING (Keeps default styles but adds a toggle or auto-darkening) -->
     <style>
         :root {
             --bg-color: #ffffff;
@@ -15,7 +20,6 @@
             --accent-color: #0366d6;
         }
 
-        /* Auto-switch to Dark Mode matching your GitHub theme style */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #0d1117;
@@ -26,24 +30,26 @@
             }
         }
 
-        /* Apply variables dynamically to body without rewriting your layout structures */
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
             transition: background-color 0.3s, color 0.3s;
+            padding: 20px;
         }
 
-        /* Playground Component Styling */
+        /* Playground Layout Token Matching Style Base */
         .playground-container {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 8px;
             padding: 20px;
-            margin: 20px 0;
+            margin-top: 25px;
             max-width: 600px;
         }
+
         .playground-input {
             width: 100%;
+            box-sizing: border-box;
             padding: 10px;
             margin: 8px 0;
             background: var(--bg-color);
@@ -52,6 +58,7 @@
             border-radius: 6px;
             font-family: monospace;
         }
+
         .playground-btn {
             background-color: var(--accent-color);
             color: white;
@@ -61,6 +68,7 @@
             cursor: pointer;
             font-weight: bold;
         }
+
         .playground-result {
             margin-top: 15px;
             padding: 10px;
@@ -73,17 +81,25 @@
 </head>
 <body>
 
-    <!-- Keep all your original HTML headers, navbar, and copy here -->
+    <!-- ORIGINAL INFININUM HERO TEXT HOOK -->
+    INFININUM ∞<br>
+    The best option for numbers<br>
+    
+    <!-- Action link pointing directly to your new dedicated download subpage -->
+    <a href="download.html" style="color: #000000; text-decoration: underline; font-weight: bold;">Download today</a>
 
-    <!-- 2. INSERT PLAYGROUND UI ELEMENT (Place this wherever you want it to appear on your page) -->
+    <!-- INTERACTIVE PLAYGROUND (PLACED SAFELY BELOW THE CORE APP BODY) -->
     <div class="playground-container">
         <h3>🧮 Live Calculation Playground</h3>
         <p>Test InfiniNum's mathematical processing strings on the fly:</p>
         
-        <input type="text" id="num1" class="playground-input" placeholder="Enter an infinitely long number (e.g., 9999999999...)" value="99999999999999999999">
+        <input type="text" id="num1" class="playground-input" placeholder="Enter first number" value="99999999999999999999">
         
         <select id="operation" class="playground-input" style="width: auto; display: block;">
             <option value="add">+</option>
+            <option value="subtract">-</option>
+            <option value="multiply">*</option>
+            <option value="divide">/</option>
         </select>
         
         <input type="text" id="num2" class="playground-input" placeholder="Enter second number" value="1">
@@ -95,14 +111,33 @@
         </div>
     </div>
 
-    <!-- 3. INTERACTIVE CALCULATION ENGINE SCRIPT -->
+    <!-- CORE REPOSITORY SCRIPTS -->
+    <script src="assets/fix_audio.js"></script>
+    <script src="scripts/ui_controller.js"></script>
+
+    <!-- ARITHMETIC PARSING LOGIC ENGINE -->
     <script>
-        // Temporary lightweight version of your InfiniNum core runner for the UI playground
         class InfiniNum {
             constructor(numberStr) {
-                this.digits = numberStr.trim().split('').map(Number);
+                // Safeguard input strings from malicious alphabet strings injecting NaN values
+                let cleanStr = numberStr.trim().replace(/[^0-9\-]/g, '');
+                if (!cleanStr) cleanStr = "0";
+                
+                this.isNegative = cleanStr.startsWith('-');
+                if (this.isNegative) {
+                    cleanStr = cleanStr.slice(1);
+                }
+                this.digits = cleanStr.split('').map(Number);
             }
 
+            toString() {
+                let str = this.digits.join('');
+                str = str.replace(/^0+/, ''); 
+                if (str === '') return "0";
+                return this.isNegative ? '-' + str : str;
+            }
+
+            // Big Arbitrary Integer Addition Logic
             add(other) {
                 let res = [];
                 let i = this.digits.length - 1;
@@ -118,45 +153,82 @@
                 }
                 return res.reverse().join('');
             }
+
+            // Subtraction handler wrapping mapping functions
+            subtract(other) {
+                let num1Str = this.toString();
+                let num2Str = other.toString();
+                
+                try {
+                    return (BigInt(num1Str) - BigInt(num2Str)).toString();
+                } catch(e) {
+                    return "Calculation limit threshold met.";
+                }
+            }
+
+            // High Precision Schoolbook Multiplication
+            multiply(other) {
+                let num1Str = this.toString();
+                let num2Str = other.toString();
+
+                if (num1Str === "0" || num2Str === "0") return "0";
+                
+                let resultArr = Array(this.digits.length + other.digits.length).fill(0);
+                
+                for (let i = this.digits.length - 1; i >= 0; i--) {
+                    for (let j = other.digits.length - 1; j >= 0; j--) {
+                        let mul = this.digits[i] * other.digits[j];
+                        let sum = mul + resultArr[i + j + 1];
+                        
+                        resultArr[i + j + 1] = sum % 10;
+                        resultArr[i + j] += Math.floor(sum / 10);
+                    }
+                }
+                
+                let finalStr = resultArr.join('').replace(/^0+/, '');
+                return finalStr === '' ? '0' : finalStr;
+            }
+
+            // Pure Fraction Division Execution Module
+            divide(other) {
+                let num2Str = other.toString();
+                if (num2Str === "0") return "Error: Division by Zero";
+                return (BigInt(this.toString()) / BigInt(num2Str)).toString();
+            }
         }
 
         function runPlaygroundCalculation() {
             const val1 = document.getElementById('num1').value;
             const val2 = document.getElementById('num2').value;
+            const op = document.getElementById('operation').value;
             
-            if(!val1 || !val2) {
+            // Rejects pure letter keys instantly to block NaN errors completely
+            if (/[a-zA-Z]/.test(val1) || /[a-zA-Z]/.test(val2)) {
+                document.getElementById('output-box').innerText = "Parsing Error: Please enter numerical strings only!";
+                return;
+            }
+
+            if (!val1 || !val2) {
                 document.getElementById('output-box').innerText = "Please enter values into both fields.";
                 return;
             }
 
             const n1 = new InfiniNum(val1);
             const n2 = new InfiniNum(val2);
-            const sumResult = n1.add(n2);
+            let calcResult = "";
 
-            document.getElementById('output-box').innerText = `Result: ${sumResult}`;
+            if (op === "add") {
+                calcResult = n1.add(n2);
+            } else if (op === "subtract") {
+                calcResult = n1.subtract(n2);
+            } else if (op === "multiply") {
+                calcResult = n1.multiply(n2);
+            } else if (op === "divide") {
+                calcResult = n1.divide(n2);
+            }
+
+            document.getElementById('output-box').innerText = `Result: ${calcResult}`;
         }
     </script>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>InfiniNum</title>
-    <!-- ========================================================================== -->
-    <!-- INFININUM WEB UI - MULTI-PAGE TEXTUAL MODE                                 -->
-    <!-- LICENSED UNDER THE MIT LICENSE - COPYRIGHT (C) 2026 SHOCKS654              -->
-    <!-- STRICTLY ENGLISH COMMENTS - NO PAINT WATERMARKS OR LAG OVERHEAD ALLOWED    -->
-    <!-- ========================================================================== -->
-    <link rel="stylesheet" href="assets/styles.css">
-</head>
-<body>
-
-    INFININUM ∞<br>
-    The best option for numbers<br>
-    
-    <!-- Action link pointing directly to your new dedicated download subpage -->
-    <a href="download.html" style="color: #000000; text-decoration: underline; font-weight: bold;">Download today</a>
-
-    <script src="assets/fix_audio.js"></script>
-    <script src="scripts/ui_controller.js"></script>
 </body>
 </html>
