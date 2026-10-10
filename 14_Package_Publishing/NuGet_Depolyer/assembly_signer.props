@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ========================================================================== -->
+<!-- INFININUM V2.0.0 - NUGET ASSEMBLY PROPERTY SIGNER                         -->
+<!-- LICENSED UNDER THE MIT LICENSE - COPYRIGHT (C) 2026 SHOCKS654              -->
+<!-- STRICTLY ENGLISH MSBUILD INSTRUCTIONS - INSTANT COMPILER COMPRESSION      -->
+<!-- ========================================================================== -->
+<Project>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+    <DelaySign>false</DelaySign>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+  </PropertyGroup>
+</Project>

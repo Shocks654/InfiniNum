@@ -1,0 +1,11 @@
+{
+  "name": "@shocks654/infininum-core",
+  "version": "2.0.0",
+  "description": "Ecosystem Package Publishing layer for transfinite FGMF operators.",
+  "main": "index.js",
+  "author": "Shocks654",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}

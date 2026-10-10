@@ -1,0 +1,14 @@
+# ==========================================================================
+# INFININUM V2.0.0 - RUST ENGINE CONFIGURATION
+# LICENSED UNDER THE MIT LICENSE - COPYRIGHT (C) 2026 SHOCKS654
+# STRICTLY ENGLISH CONFIGURATION - ZERO-LATENCY NATIVE PORT
+# ==========================================================================
+
+[package]
+name = "infininum_rust_core"
+version = "2.0.0"
+edition = "2021"
+authors = ["Shocks654"]
+
+[dependencies]
+# Native lightweight token parsing utilities

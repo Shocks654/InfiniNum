@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ========================================================================== -->
+<!-- INFININUM V2.0.0 - NUGET PACKAGE PRODUCTION MANIFEST                      -->
+<!-- LICENSED UNDER THE MIT LICENSE - COPYRIGHT (C) 2026 SHOCKS654              -->
+<!-- STRICTLY ENGLISH DEFINITIONS - NATIVE INTERACTIVE .NET DRIVER               -->
+<!-- ========================================================================== -->
+<package xmlns="http://microsoft.com">
+  <metadata>
+    <id>InfiniNum.Core.Ecosystem</id>
+    <version>2.0.0</version>
+    <title>InfiniNum Transfinite Computation Engine</title>
+    <authors>Shocks654</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <description>Ultra-high-speed symbolic math package for tracking cosmic-scale expansions and Shocks' Number limit matrices without physical lag loops.</description>
+    <copyright>Copyright (C) 2026 Shocks654</copyright>
+    <tags>googology bignum transfinite math arithmetic precision fast-growing-hierarchy</tags>
+  </metadata>
+</package>

@@ -18,5 +18,6 @@
     // --- 4. SPELL CHECK AND TEXT ISOLATION ---
     // Configures spelling dictionaries to strictly align with global international layouts
     "cSpell.language": "en",
-    "cmake.sourceDirectory": "C:/Users/Rendszergazda/Documents/InfiniNum/17_Native_Ports_CPP"
+    "cmake.sourceDirectory": "C:/Users/Rendszergazda/Documents/InfiniNum/17_Native_Ports_CPP",
+    "C_Cpp.default.compilerPath": "c:\\Users\\Rendszergazda\\Downloads\\winlibs-i686-posix-dwarf-gcc-16.2.0-mingw-w64ucrt-14.0.0-r2\\mingw32\\bin\\g++.exe"
 }
