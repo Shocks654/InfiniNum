@@ -32,7 +32,7 @@ The framework is fully optimized to symbolically evaluate and track cosmic-scale
 ## 📦 How to get it:
 1. Go to the website, or "releases" and download the **InfiniNum.zip**. Do **NOT** download tar.gz!
 2. Unzip it directly into your project folder.
-3. Import the source file and you are ready to go. No `pip install`, no `npm install`, no setup clutter!
+3. Import the source file and you are ready to go. Alternative solution: npm install or pip install.
 
 ---
 
